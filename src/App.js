@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+
+import { RunPreview } from "./component/runsPreview/RunsPreview";
+import { ScoreButtons } from "./component/scoreButtons/ScoreButtons";
 
 function App() {
+  const [totalRuns, setTotalRuns] = useState(0);
+  const [totalWickets, setTotalWickets] = useState(0);
+  const [isAllOut, setIsAllOut] = useState(false);
+  const [lastAdded, setLastAdded] = useState(0);
+
+  const addScore = (score) => {
+    if (isAllOut) {
+    } else {
+      setTotalRuns(totalRuns + score);
+      setLastAdded(score);
+    }
+  };
+
+  const addWicket = () => {
+    if (totalWickets === 9) {
+      setIsAllOut(true);
+    } else {
+      setTotalWickets(totalWickets + 1);
+    }
+  };
+
+  const resetScore = () => {
+    setTotalRuns(0);
+    setIsAllOut(false);
+    setTotalWickets(0);
+  };
+
+  const undoRecentScore = () => {
+    setTotalRuns(totalRuns - lastAdded);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RunPreview
+        totalRuns={totalRuns}
+        totalWickets={totalWickets}
+        isAllOut={isAllOut}
+      />
+      <ScoreButtons
+        addScore={addScore}
+        resetScore={resetScore}
+        undoRecentScore={undoRecentScore}
+        addWicket={addWicket}
+      />
     </div>
   );
 }
