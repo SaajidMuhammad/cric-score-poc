@@ -1,73 +1,58 @@
 import React from "react";
 import "./ScoreButtons.css";
 
+const RUNS_BUTTONS = [
+  {
+    buttonName: "0-run",
+    value: 0,
+  },
+  {
+    buttonName: "1-run",
+    value: 1,
+  },
+  {
+    buttonName: "2-run",
+    value: 2,
+  },
+  {
+    buttonName: "3-run",
+    value: 3,
+  },
+  {
+    buttonName: "4-run",
+    value: 4,
+  },
+  {
+    buttonName: "5-run",
+    value: 5,
+  },
+  {
+    buttonName: "6-run",
+    value: 6,
+  },
+];
+
+
+
+// Score Button start
 export const ScoreButtons = (props) => {
   return (
     <div>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(0);
-        }}
-      >
-        0
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(1);
-        }}
-      >
-        1
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(2);
-        }}
-      >
-        2
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(3);
-        }}
-      >
-        3
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(4);
-        }}
-      >
-        4
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(5);
-        }}
-      >
-        5
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(6);
-        }}
-      >
-        6
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(6);
-        }}
-      >
-        Byes
-      </button>
+      {RUNS_BUTTONS.map((btn) => {
+        return (
+          <button
+            className="button"
+            onClick={() => {
+              props.addScore(btn.value);
+            }}
+          >
+            {btn.value}
+          </button>
+        );
+      })}
+
+      {/* Extras & byes */}
+
       <button
         className="button"
         onClick={() => {
