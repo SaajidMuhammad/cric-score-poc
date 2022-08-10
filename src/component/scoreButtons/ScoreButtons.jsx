@@ -32,8 +32,6 @@ const RUNS_BUTTONS = [
   },
 ];
 
-
-
 // Score Button start
 export const ScoreButtons = (props) => {
   return (
