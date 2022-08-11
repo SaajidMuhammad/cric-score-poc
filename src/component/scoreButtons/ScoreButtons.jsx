@@ -32,77 +32,74 @@ const RUNS_BUTTONS = [
   },
 ];
 
-// Score Button start
+const EXTRA_BUTTONS = [
+  {
+    buttonName: "lb-btn",
+    value: "LB",
+  },
+  {
+    buttonName: "wd-btn",
+    value: "WD",
+  },
+  {
+    buttonName: "nb-btn",
+    value: "NB",
+  },
+  {
+    buttonName: "wicket-btn",
+    value: "WKT",
+  },
+];
+
 export const ScoreButtons = (props) => {
   return (
     <div>
-      {RUNS_BUTTONS.map((btn) => {
-        return (
-          <button
-            className="button"
-            onClick={() => {
-              props.addScore(btn.value);
-            }}
-          >
-            {btn.value}
-          </button>
-        );
-      })}
+      <div className="runs-buttons-wrapper">
+        {RUNS_BUTTONS.map((btn) => {
+          return (
+            <button
+              className="runs-button"
+              onClick={() => {
+                props.addScore(btn.value);
+              }}
+            >
+              {btn.value}
+            </button>
+          );
+        })}
+      </div>
 
-      {/* Extras & byes */}
+      <div className="extra-buttons-wrapper">
+        {EXTRA_BUTTONS.map((extraBtn) => {
+          return (
+            <button className="extra-buttons" onClick={() => {}}>
+              {extraBtn.value}
+            </button>
+          );
+        })}
+      </div>
 
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(6);
-        }}
-      >
-        LB
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(6);
-        }}
-      >
-        Wide
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          props.addScore(6);
-        }}
-      >
-        NB
-      </button>
-      <button
-        className="button reset"
-        onClick={() => {
-          props.addWicket();
-        }}
-      >
-        Wicket
-      </button>
-
-      <br />
-      <br />
-
-      <button
-        className="button reset"
-        onClick={() => {
-          props.resetScore();
-        }}
-      >
-        Reset
-      </button>
-      <button
-        className="button reset"
-        onClick={() => {
-          props.undoRecentScore();
-        }}
-      >
-        Undo
-      </button>
+      <div className="more-buttons-wrapper">
+        <button
+          className="more-buttons"
+          onClick={() => {
+            props.resetScore();
+          }}
+        >
+          Reset
+        </button>
+        <button
+          disabled={!props.undoAvailable}
+          className="more-buttons"
+          onClick={() => {
+            if (props.undoAvailable) {
+              props.undoRecentScore();
+            }
+          }}
+        >
+          Undo
+        </button>
+      </div>
     </div>
   );
 };

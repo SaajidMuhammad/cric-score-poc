@@ -1,9 +1,35 @@
-.button {
-  height: 120px;
-  width: 120px;
+.runs-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.extra-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.more-buttons-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 50px 0 10px;
+}
+
+.runs-button {
+  height: 80px;
+  width: 80px;
   font-size: 40px;
 }
 
-.reset {
-  width: 200px;
+.extra-buttons {
+  height: 80px;
+  width: 140px;
+  font-size: 40px;
+}
+
+.more-buttons {
+  height: 80px;
+  width: 180px;
+  font-size: 40px;
 }

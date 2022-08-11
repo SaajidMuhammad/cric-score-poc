@@ -9,12 +9,14 @@ function App() {
   const [totalWickets, setTotalWickets] = useState(0);
   const [isAllOut, setIsAllOut] = useState(false);
   const [lastAdded, setLastAdded] = useState(0);
+  const [undoAvailable, setUndoAvailable] = useState(false);
 
   const addScore = (score) => {
     if (isAllOut) {
     } else {
       setTotalRuns(totalRuns + score);
       setLastAdded(score);
+      setUndoAvailable(true);
     }
   };
 
@@ -34,6 +36,8 @@ function App() {
 
   const undoRecentScore = () => {
     setTotalRuns(totalRuns - lastAdded);
+
+    setUndoAvailable(false);
   };
 
   return (
@@ -48,6 +52,7 @@ function App() {
         resetScore={resetScore}
         undoRecentScore={undoRecentScore}
         addWicket={addWicket}
+        undoAvailable={undoAvailable}
       />
     </div>
   );
